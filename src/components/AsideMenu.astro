@@ -1,8 +1,13 @@
 ---
-import LibreryIcon from '../icons/Library.astro'
-import HomeIcon from '../icons/Home.astro'
-import SearchIcon from '../icons/Search.astro'
+import LibreryIcon from '@/icons/Library.astro'
+import HomeIcon from '@/icons/Home.astro'
+import SearchIcon from '@/icons/Search.astro'
 import SideMenuItem from './SideMenuItem.astro'
+import SideMenuCard from './SideMenuCard.astro'
+
+import { playlists } from "@/lib/data"
+
+const sortedPlayLists = playlists.sort((a, b) => a.title.localeCompare(b.title))
 ---
 
 <nav class="flex flex-col flex-1 gap-2">
@@ -24,6 +29,9 @@ import SideMenuItem from './SideMenuItem.astro'
                 <LibreryIcon />
                 Tu biblioteca
             </SideMenuItem>
+            {
+                sortedPlayLists.map(playlist => <SideMenuCard playlist={playlist}/>)
+            }
         </ul>
     </div>
 </nav>
